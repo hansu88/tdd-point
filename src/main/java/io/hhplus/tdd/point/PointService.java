@@ -13,7 +13,7 @@ public class PointService {
     }
 
     /**
-     * 특정 유저의 포인트를 조회한다
+     * 특정 유저의 포인트를 조회작업한다
      */
     public UserPoint getUserPoint(long userId) {
         return userPointTable.selectById(userId);
