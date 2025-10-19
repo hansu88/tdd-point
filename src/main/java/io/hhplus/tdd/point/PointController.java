@@ -19,7 +19,7 @@ public class PointController {
 
     /**
      * TODO - 특정 유저의 포인트를 조회하는 기능을 작성해주세요.
-     * 어떠한 유저를 반환해도 ID도 0, 포인트를 조회하지않아서 처리
+     * PotinService를 주입받고 getUserPoint 라는 메서드를 활용하여 작업
      */
     @GetMapping("{id}")
     public UserPoint point(
