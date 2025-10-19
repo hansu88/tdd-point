@@ -51,7 +51,6 @@ class PointServiceMockTest {
         verify(userPointTable).selectById(userId);
         verify(userPointTable).insertOrUpdate(userId, 1000L);
 
-        System.out.println("UserPoint  결과 :" + result.point());
     }
 
     @Test
@@ -79,7 +78,6 @@ class PointServiceMockTest {
         verify(userPointTable).selectById(userId);
         verify(userPointTable).insertOrUpdate(userId, 2000L);
 
-        System.out.println("UserPoint  결과 :" + result.point());
     }
 
     @Test
@@ -105,7 +103,6 @@ class PointServiceMockTest {
         verify(userPointTable).selectById(userId);
         verify(userPointTable).insertOrUpdate(userId, expectedPoint);
 
-        System.out.println("UserPoint  결과 :" + result.point());
     }
 
     @Test
