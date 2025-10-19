@@ -23,9 +23,9 @@ public class PointService {
      * 포인트를 충전한다 (아직 구현 없음)
      */
     public UserPoint chargePoint(long userId, long amount) {
-        UserPoint userPoint = userPointTable.selectById(userId);
-        long newPoint  = userPoint.point() + amount;
+        UserPoint currentPoint = userPointTable.selectById(userId);
+        long newAmount  = currentPoint.point() + amount;
         // 아직 구현 없음
-        return userPointTable.insertOrUpdate(userId, newPoint);
+        return userPointTable.insertOrUpdate(userId, newAmount);
     }
 }
