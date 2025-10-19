@@ -18,4 +18,12 @@ public class PointService {
     public UserPoint getUserPoint(long userId) {
         return userPointTable.selectById(userId);
     }
+
+    /**
+     * 포인트를 충전한다 (아직 구현 없음)
+     */
+    public UserPoint chargePoint(long userId, long amount) {
+        // 아직 구현 없음
+        return null;
+    }
 }
