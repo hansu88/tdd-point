@@ -129,4 +129,32 @@ class PointServiceMockTest {
         verify(userPointTable, times(1)).insertOrUpdate(userId, 3000L);  // 정확히 1번 호출
         verifyNoMoreInteractions(userPointTable);  // 다른 메서드는 호출 안 됨
     }
+
+    // ===== 포인트 사용 테스트 (Mock 방식) =====
+
+    @Test
+    @DisplayName("포인트 1000원이 있을 때 500원을 사용하면 500원이 남는다")
+    void usePoint_HasEnoughPoint_Success() {
+        // given
+        long userId = 1L;
+        long currentPoint = 1000L;
+        long useAmount = 500L;
+        long expectedPoint = 500L;
+
+        UserPoint current = new UserPoint(userId, currentPoint, System.currentTimeMillis());
+        UserPoint used = new UserPoint(userId, expectedPoint, System.currentTimeMillis());
+
+        when(userPointTable.selectById(userId)).thenReturn(current);
+        when(userPointTable.insertOrUpdate(userId, expectedPoint)).thenReturn(used);
+
+        // when
+        UserPoint result = pointService.usePoint(userId, useAmount);
+
+        // then
+        assertThat(result.point()).isEqualTo(expectedPoint);
+        verify(userPointTable).selectById(userId);
+        verify(userPointTable).insertOrUpdate(userId, expectedPoint);
+
+        System.out.println("UserPoint  결과 :" + result.point());
+    }
 }
