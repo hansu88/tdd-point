@@ -49,4 +49,30 @@ class PointServiceMockTest {
         verify(userPointTable).selectById(userId);
         verify(userPointTable).insertOrUpdate(userId, 1000L);
     }
+
+    @Test
+    @DisplayName("2000원을 충전하면 포인트가 2000원 증가한다")
+    void chargePoint_2000_Success() {
+        // given
+        long userId = 2L;
+        long chargeAmount = 2000L;
+
+        // Mock 동작 정의: 현재 포인트 0
+        UserPoint currentPoint = new UserPoint(userId, 0L, System.currentTimeMillis());
+        when(userPointTable.selectById(userId)).thenReturn(currentPoint);
+
+        // Mock 동작 정의: 충전 후 2000포인트
+        UserPoint chargedPoint = new UserPoint(userId, 2000L, System.currentTimeMillis());
+        when(userPointTable.insertOrUpdate(userId, 2000L)).thenReturn(chargedPoint);
+
+        // when
+        UserPoint result = pointService.chargePoint(userId, chargeAmount);
+
+        // then
+        assertThat(result.point()).isEqualTo(2000L);
+
+        // verify
+        verify(userPointTable).selectById(userId);
+        verify(userPointTable).insertOrUpdate(userId, 2000L);
+    }
 }
