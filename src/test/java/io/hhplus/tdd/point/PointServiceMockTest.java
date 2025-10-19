@@ -154,4 +154,30 @@ class PointServiceMockTest {
 
         System.out.println("UserPoint  결과 :" + result.point());
     }
+
+    @Test
+    @DisplayName("포인트 2000원이 있을 때 800원을 사용하면 1200원이 남는다")
+    void usePoint_DifferentAmount_Success() {
+        // given
+        long userId = 2L;
+        long currentPoint = 2000L;
+        long useAmount = 800L;
+        long expectedPoint = 1200L;
+
+        UserPoint current = new UserPoint(userId, currentPoint, System.currentTimeMillis());
+        UserPoint used = new UserPoint(userId, expectedPoint, System.currentTimeMillis());
+
+        when(userPointTable.selectById(userId)).thenReturn(current);
+        when(userPointTable.insertOrUpdate(userId, expectedPoint)).thenReturn(used);
+
+        // when
+        UserPoint result = pointService.usePoint(userId, useAmount);
+
+        // then
+        assertThat(result.point()).isEqualTo(expectedPoint);
+        verify(userPointTable).selectById(userId);
+        verify(userPointTable).insertOrUpdate(userId, expectedPoint);
+
+    }
+
 }
