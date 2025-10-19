@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -196,6 +197,9 @@ class PointServiceMockTest {
         // verify: insertOrUpdate는 호출되지 않아야 함
         verify(userPointTable).selectById(userId);
         verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
+
+        // 잔고 처리 디버긱용 확인
+        System.out.println(Mockito.mockingDetails(userPointTable).printInvocations());
     }
 
 }

@@ -34,6 +34,15 @@ public class PointService {
     public UserPoint usePoint(long userId, long amount) {
         // 진짜 구현 : 현재포인트 - 사용금액
         UserPoint currentPoint = userPointTable.selectById(userId);
+
+        // 잔고 부족 체크
+        if (currentPoint.point() < amount) {
+            throw new IllegalArgumentException(
+                    String.format("잔고가 부족합니다. 현재포인트 : %d, 사용 요청: %d",
+                            currentPoint.point(), amount)
+            );
+        }
+
         long newAmount  = currentPoint.point() - amount;
         return userPointTable.insertOrUpdate(userId, newAmount);
     }
