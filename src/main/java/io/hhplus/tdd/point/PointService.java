@@ -29,11 +29,12 @@ public class PointService {
     }
 
     /**
-     * 포인트를 사용한다 (가짜 구현)
+     * 포인트를 사용한다 (진짜 구현)
      */
     public UserPoint usePoint(long userId, long amount) {
-        // 가짜 구현 : 무조건 500원 !
+        // 진짜 구현 : 현재포인트 - 사용금액
         UserPoint currentPoint = userPointTable.selectById(userId);
-        return userPointTable.insertOrUpdate(userId, 500L);
+        long newAmount  = currentPoint.point() - amount;
+        return userPointTable.insertOrUpdate(userId, newAmount);
     }
 }
