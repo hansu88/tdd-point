@@ -8,11 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -152,7 +150,6 @@ class PointServiceMockTest {
         verify(userPointTable).selectById(userId);
         verify(userPointTable).insertOrUpdate(userId, expectedPoint);
 
-        System.out.println("UserPoint  결과 :" + result.point());
     }
 
     @Test
@@ -178,6 +175,27 @@ class PointServiceMockTest {
         verify(userPointTable).selectById(userId);
         verify(userPointTable).insertOrUpdate(userId, expectedPoint);
 
+    }
+
+    @Test
+    @DisplayName("포인트가 부족하면 예외가 발생한다")
+    void usePoint_InsufficientAmount_ThrowsException() {
+        // given
+        long userId = 3L;
+        long currentPoint = 500L;
+        long useAmount = 1000L;
+
+        UserPoint current = new UserPoint(userId, currentPoint, System.currentTimeMillis());
+        when(userPointTable.selectById(userId)).thenReturn(current);
+        
+        // when & then
+        assertThatThrownBy(() -> pointService.usePoint(userId, useAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("잔고가 부족합니다");
+
+        // verify: insertOrUpdate는 호출되지 않아야 함
+        verify(userPointTable).selectById(userId);
+        verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
     }
 
 }
