@@ -8,6 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.eq;
@@ -48,6 +50,8 @@ class PointServiceMockTest {
         // verify: 메서드 호출 검증
         verify(userPointTable).selectById(userId);
         verify(userPointTable).insertOrUpdate(userId, 1000L);
+
+        System.out.println("UserPoint  결과 :" + result.point());
     }
 
     @Test
@@ -74,5 +78,55 @@ class PointServiceMockTest {
         // verify
         verify(userPointTable).selectById(userId);
         verify(userPointTable).insertOrUpdate(userId, 2000L);
+
+        System.out.println("UserPoint  결과 :" + result.point());
+    }
+
+    @Test
+    @DisplayName("포인트가 1000원인 유저가 500원을 충전하면 1500원이 된다")
+    void chargePoint_AccumulatePoints_Success() {
+        // given
+        long userId = 3L;
+        long initialPoint = 1000L;
+        long chargeAmount = 500L;
+        long expectedPoint = 1500L;
+
+        UserPoint currentPoint = new UserPoint(userId, initialPoint, System.currentTimeMillis());
+        UserPoint chargedPoint = new UserPoint(userId, expectedPoint, System.currentTimeMillis());
+
+        when(userPointTable.selectById(userId)).thenReturn(currentPoint);
+        when(userPointTable.insertOrUpdate(userId, expectedPoint)).thenReturn(chargedPoint);
+
+        // when
+        UserPoint result = pointService.chargePoint(userId, chargeAmount);
+
+        // then
+        assertThat(result.point()).isEqualTo(expectedPoint);
+        verify(userPointTable).selectById(userId);
+        verify(userPointTable).insertOrUpdate(userId, expectedPoint);
+
+        System.out.println("UserPoint  결과 :" + result.point());
+    }
+
+    @Test
+    @DisplayName("충전 시 UserPointTable의 메서드가 올바르게 호출된다")
+    void chargePoint_CallsTableMethodsCorrectly() {
+        // given
+        long userId = 4L;
+        long chargeAmount = 3000L;
+
+        UserPoint currentPoint = new UserPoint(userId, 0L, System.currentTimeMillis());
+        UserPoint chargedPoint = new UserPoint(userId, 3000L, System.currentTimeMillis());
+
+        when(userPointTable.selectById(userId)).thenReturn(currentPoint);
+        when(userPointTable.insertOrUpdate(userId, 3000L)).thenReturn(chargedPoint);
+
+        // when
+        pointService.chargePoint(userId, chargeAmount);
+
+        // then
+        verify(userPointTable, times(1)).selectById(userId);  // 정확히 1번 호출
+        verify(userPointTable, times(1)).insertOrUpdate(userId, 3000L);  // 정확히 1번 호출
+        verifyNoMoreInteractions(userPointTable);  // 다른 메서드는 호출 안 됨
     }
 }
