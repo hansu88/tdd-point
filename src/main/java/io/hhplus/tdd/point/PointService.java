@@ -1,5 +1,6 @@
 package io.hhplus.tdd.point;
 
+import java.util.List;
 import io.hhplus.tdd.database.PointHistoryTable;
 import io.hhplus.tdd.database.UserPointTable;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,13 @@ public class PointService {
 
         long newAmount  = currentPoint.point() - amount;
         return userPointTable.insertOrUpdate(userId, newAmount);
+    }
+
+    /**
+     * 포인트 내역을 조회한다 (아직 구현 없음)
+     */
+    public List<PointHistory> getPointHistories(long userId) {
+        // 아직 구현 없음
+        return null;
     }
 }

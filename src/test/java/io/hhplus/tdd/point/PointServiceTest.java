@@ -1,5 +1,6 @@
 package io.hhplus.tdd.point;
 
+import io.hhplus.tdd.database.PointHistoryTable;
 import io.hhplus.tdd.database.UserPointTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,11 +12,12 @@ class PointServiceTest {
 
     private PointService pointService;
     private UserPointTable userPointTable;
+    private PointHistoryTable pointHistoryTable;
 
     @BeforeEach
     void setUp() {
         userPointTable = new UserPointTable();
-        pointService = new PointService(userPointTable);
+        pointService = new PointService(userPointTable,pointHistoryTable);
 
         // 테스트 데이터 셋업
         userPointTable.insertOrUpdate(1L, 1000L);  // 1번 유저: 1000포인트
