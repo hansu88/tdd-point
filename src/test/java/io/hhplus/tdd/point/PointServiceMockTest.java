@@ -13,6 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
+import io.hhplus.tdd.database.PointHistoryTable;
+import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 class PointServiceMockTest {
@@ -22,6 +24,9 @@ class PointServiceMockTest {
 
     @InjectMocks
     private PointService pointService;
+
+    @Mock
+    private PointHistoryTable pointHistoryTable;
 
     // ===== 포인트 충전 테스트 (Mock 방식) =====
 
@@ -275,4 +280,27 @@ class PointServiceMockTest {
         System.out.println(Mockito.mockingDetails(userPointTable).printInvocations());
     }
 
+    // ===== 포인트 내역 조회 테스트 (Mock 방식) =====
+
+    @Test
+    @DisplayName("유저의 포인트 내역을 조회한다")
+    void getPointHistories_ReturnsHistories() {
+        // given
+        long userId = 1L;
+        List<PointHistory> expectedHistories = List.of(
+                new PointHistory(1L, userId, 1000L, TransactionType.CHARGE, System.currentTimeMillis()),
+                new PointHistory(2L, userId, 500L, TransactionType.USE, System.currentTimeMillis())
+        );
+
+        when(pointHistoryTable.selectAllByUserId(userId)).thenReturn(expectedHistories);
+
+        // when
+        List<PointHistory> result = pointService.getPointHistories(userId);
+
+        // then
+        assertThat(result).hasSize(2);
+        assertThat(result.get(0).type()).isEqualTo(TransactionType.CHARGE);
+        assertThat(result.get(1).type()).isEqualTo(TransactionType.USE);
+        verify(pointHistoryTable).selectAllByUserId(userId);
+    }
 }
