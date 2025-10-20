@@ -202,4 +202,77 @@ class PointServiceMockTest {
         System.out.println(Mockito.mockingDetails(userPointTable).printInvocations());
     }
 
+    @Test
+    @DisplayName("포인트가 부족하면 예외가 발생한다")
+    void usePoint_InsufficientBalance_ThrowsException() {
+        // given
+        long userId = 4L;
+        long currentPoint = 500L;
+        long useAmount = 1000L;
+
+        UserPoint current = new UserPoint(userId, currentPoint, System.currentTimeMillis());
+        when(userPointTable.selectById(userId)).thenReturn(current);
+
+        // when & then
+        assertThatThrownBy(() -> pointService.usePoint(userId, useAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("잔고가 부족합니다");
+
+        verify(userPointTable).selectById(userId);
+        verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
+
+        // 잔고 처리 디버기용 확인
+        System.out.println(Mockito.mockingDetails(userPointTable).printInvocations());
+    }
+
+    @Test
+    @DisplayName("포인트가 0원일 때 사용하면 예외가 발생한다")
+    void usePoint_ZeroBalance_ThrowsException() {
+        // given
+        long userId = 5L;
+        long currentPoint = 0L;
+        long useAmount = 100L;
+
+        UserPoint current = new UserPoint(userId, currentPoint, System.currentTimeMillis());
+        when(userPointTable.selectById(userId)).thenReturn(current);
+
+        // when & then
+        assertThatThrownBy(() -> pointService.usePoint(userId, useAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("잔고가 부족합니다");
+
+        verify(userPointTable).selectById(userId);
+        verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
+
+        // 잔고 처리 디버기용 확인
+        System.out.println(Mockito.mockingDetails(userPointTable).printInvocations());
+    }
+
+    @Test
+    @DisplayName("사용 시 UserPointTable의 메서드가 올바르게 호출된다")
+    void usePoint_CallsTableMethodsCorrectly() {
+        // given
+        long userId = 6L;
+        long currentPoint = 5000L;
+        long useAmount = 2000L;
+        long expectedPoint = 3000L;
+
+        UserPoint current = new UserPoint(userId, currentPoint, System.currentTimeMillis());
+        UserPoint used = new UserPoint(userId, expectedPoint, System.currentTimeMillis());
+
+        when(userPointTable.selectById(userId)).thenReturn(current);
+        when(userPointTable.insertOrUpdate(userId, expectedPoint)).thenReturn(used);
+
+        // when
+        pointService.usePoint(userId, useAmount);
+
+        // then
+        verify(userPointTable, times(1)).selectById(userId);
+        verify(userPointTable, times(1)).insertOrUpdate(userId, expectedPoint);
+        verifyNoMoreInteractions(userPointTable);
+
+        // 잔고 처리 디버기용 확인
+        System.out.println(Mockito.mockingDetails(userPointTable).printInvocations());
+    }
+
 }
