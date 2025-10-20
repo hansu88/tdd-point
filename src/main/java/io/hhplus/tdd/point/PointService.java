@@ -52,10 +52,10 @@ public class PointService {
     }
 
     /**
-     * 포인트 내역을 조회한다 (아직 구현 없음)
+     * 포인트 내역을 조회한다 (진짜 구현)
      */
     public List<PointHistory> getPointHistories(long userId) {
-        // 아직 구현 없음
-        return null;
+        // 가짜 구현: 빈 리스트 반환
+        return pointHistoryTable.selectAllByUserId(userId);
     }
 }
