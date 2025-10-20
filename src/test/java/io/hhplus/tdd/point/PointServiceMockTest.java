@@ -303,4 +303,62 @@ class PointServiceMockTest {
         assertThat(result.get(1).type()).isEqualTo(TransactionType.USE);
         verify(pointHistoryTable).selectAllByUserId(userId);
     }
+
+    @Test
+    @DisplayName("내역이 없는 유저는 빈 리스트를 반환한다")
+    void getPointHistories_NoHistory_ReturnEmptyList() {
+        // given
+        long userId = 999L;
+        when(pointHistoryTable.selectAllByUserId(userId)).thenReturn(List.of());
+
+        // when
+        List<PointHistory> result = pointService.getPointHistories(userId);
+
+        // then
+        assertThat(result).isEmpty();
+        verify(pointHistoryTable).selectAllByUserId(userId);
+
+    }
+
+    @Test
+    @DisplayName("충전과 사용 내역을 모두 조회한다")
+    void getPointHistories_MultipleTypes_ReturnsAll() {
+        // given
+        long userId = 2L;
+        long timestamp = System.currentTimeMillis();
+        List<PointHistory> expectedHistories = List.of(
+                new PointHistory(1L, userId, 5000L, TransactionType.CHARGE, timestamp),
+                new PointHistory(2L, userId, 2000L, TransactionType.USE, timestamp + 1000),
+                new PointHistory(3L, userId, 3000L, TransactionType.CHARGE, timestamp + 2000),
+                new PointHistory(4L, userId, 1000L, TransactionType.USE, timestamp + 3000)
+        );
+
+        when(pointHistoryTable.selectAllByUserId(userId)).thenReturn(expectedHistories);
+
+        // when
+        List<PointHistory> result = pointService.getPointHistories(userId);
+
+        // then
+        assertThat(result).hasSize(4);
+        assertThat(result.get(0).type()).isEqualTo(TransactionType.CHARGE);
+        assertThat(result.get(1).type()).isEqualTo(TransactionType.USE);
+        assertThat(result.get(2).type()).isEqualTo(TransactionType.CHARGE);
+        assertThat(result.get(3).type()).isEqualTo(TransactionType.USE);
+        verify(pointHistoryTable).selectAllByUserId(userId);
+    }
+
+    @Test
+    @DisplayName("내역 조회 시 PointHistoryTable의 메서드가 올바르게 호출된다")
+    void getPointHistories_CallsTableMethodCorrectly() {
+        // given
+        long userId = 3L;
+        when(pointHistoryTable.selectAllByUserId(userId)).thenReturn(List.of());
+
+        // when
+        pointService.getPointHistories(userId);
+
+        // then
+        verify(pointHistoryTable, times(1)).selectAllByUserId(userId);
+        verifyNoMoreInteractions(pointHistoryTable);
+    }
 }
