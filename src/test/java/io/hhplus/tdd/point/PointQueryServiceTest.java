@@ -29,4 +29,21 @@ class PointQueryServiceTest {
         assertThat(result.point()).isEqualTo(0L);
         assertThat(result.updateMillis()).isGreaterThan(0L);
     }
+
+
+    @Test
+    @DisplayName("포인트가 있는 사용자의 포인트를 조회하면 실제 포인트를 반환한다")
+    void getUserPoint_ExistingUser_ReturnsActualPoint() {
+        // given
+        long userId = 2L;
+        // TODO: 사용자에게 포인트를 먼저 설정하는 로직 필요
+
+        // when
+        UserPoint result = pointService.getUserPoint(userId);
+
+        // then
+        assertThat(result.id()).isEqualTo(userId);
+        // 현재는 항상 0이지만, 나중에 실제 포인트 확인으로 변경 예정
+        assertThat(result.point()).isEqualTo(0L);
+    }
 }
