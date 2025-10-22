@@ -46,4 +46,21 @@ class PointQueryServiceTest {
         // 현재는 항상 0이지만, 나중에 실제 포인트 확인으로 변경 예정
         assertThat(result.point()).isEqualTo(0L);
     }
+
+    @Test
+    @DisplayName("사용자 포인트 조회한다")
+    void getUserPoint_select() {
+        // given
+        long userId = 1L;
+        long expectedPoint = 1000L;
+
+        pointService.chargePoint(userId,expectedPoint);
+
+        // when
+        UserPoint userpoint = pointService.getUserPoint(userId);
+
+        // then
+        assertThat(userpoint.id()).isEqualTo(expectedPoint);
+        assertThat(userpoint.point()).isEqualTo(expectedPoint);
+    }
 }
