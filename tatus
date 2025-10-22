@@ -1,0 +1,173 @@
+[33mcommit 14826a26854f9b1dab80c24b875af51330488cb8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/step1-4-point-history[m[33m, [m[1;31morigin/feature/step1-4-point-history[m[33m)[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Tue Oct 21 07:51:14 2025 +0900
+
+    feat: getPointHistories 메서드 선언 및 PointHistoryTable 주입
+
+[33mcommit e9ba36acd93e0900285ad65b464bc6f1603f34a8[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Tue Oct 21 07:42:03 2025 +0900
+
+    test: 포인트 내역 조회 테스트 작성 (Red)
+
+[33mcommit a056b256b0862b601844fbc4f60453e1b826d2e9[m[33m ([m[1;31morigin/feature/step1-3-point-use[m[33m, [m[1;32mmain[m[33m, [m[1;32mfeature/step1-3-point-use[m[33m)[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Mon Oct 20 21:48:18 2025 +0900
+
+    feat: Controller에 포인트 사용 기능 연결
+
+[33mcommit 227ee930eae74913964b41feaeda6a102de0d4c7[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Mon Oct 20 21:42:19 2025 +0900
+
+    test: 포인트 사용 다양한 시나리오 테스트 추가
+
+[33mcommit fbfde4333360474c4147065a31626ddc58d993ed[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 21:46:05 2025 +0900
+
+    feat: 잔고 부족 시 예외 처리 구현
+
+[33mcommit c2f30b3c934edeebcbd6a3c035a00bbc6f7882cc[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 21:11:46 2025 +0900
+
+    test: 잔고 부족 시 예외 발생 테스트 추가 (Red)
+
+[33mcommit 1a704811b4d197f2229636ee21b79ce60209b46c[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 21:00:23 2025 +0900
+
+    feat: usePoint 진짜 구현 (현재 포인트 - 사용 금액
+
+[33mcommit 452475327b5e4328725c0e22a659cb2adae45de2[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 20:56:35 2025 +0900
+
+    test: 다른 금액 포인트 사용 테스트 추가 (Red)
+
+[33mcommit b8011c16e2a06b7bc5c12ddfec290db8aede2ea0[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 20:51:53 2025 +0900
+
+    feat: usePoint 가짜 구현 (500 하드코딩)
+
+[33mcommit 44880afd13ddd4421321f8a552baaaefbf4b8471[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 20:37:02 2025 +0900
+
+    test: 포인트 사용 테스트 작성 (Red)
+
+[33mcommit 83e1e6bf9e2fe0f43d9688fd681bdd4db4781441[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/feature/step1-2-point-charge-mock[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mfeature/step1-2-point-charge-mock[m[33m)[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 11:48:08 2025 +0900
+
+    test: api 방식에 포인트 충전 기능 Mock 테스트
+
+[33mcommit dc64af9016646f1111ea61647f4ef4d85119a541[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 11:47:14 2025 +0900
+
+    feat: Controller에 포인트 충전 기능 연결
+
+[33mcommit 4ec052516279d1540faa26d7af9201aefd40ad6d[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 11:29:17 2025 +0900
+
+    test: 포인트 충전 다양한 시나리오 테스트 추가 (Mock)
+
+[33mcommit 2094ec8d9352fcd59aad8046173032a2c179f55c[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 11:04:54 2025 +0900
+
+    feat: chargePoint 진짜 구현 (현재 포인트 + 충전 금액)
+
+[33mcommit 5c1873311e17f94260df93c6af5b2d733df9d1d5[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 11:03:21 2025 +0900
+
+    feat: chargePoint 진짜 구현 - Mock 테스트 통과
+
+[33mcommit f95459316338d7f4ce34aac88634c9c9749b11a3[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 10:57:41 2025 +0900
+
+    feat: chargePoint 가짜 구현 - Mock 테스트 통과
+
+[33mcommit ece6b8570a62269b8cc997a6cceff16925347c34[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 10:51:45 2025 +0900
+
+    feat: chargePoint 메서드 선언 (구현 없음)
+
+[33mcommit 658f88f7c93e89df62c063416f2c25fb407f1fe1[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 10:49:57 2025 +0900
+
+    test: 1000원 충전 테스트 작성 - Mock 방식 (Red)
+
+[33mcommit 5f22126f8e418f85d879d25cf0afb72b788dfe2b[m[33m ([m[1;31morigin/feature/step1-1-point-inquiry[m[33m, [m[1;32mfeature/step1-1-point-inquiry[m[33m)[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 10:29:47 2025 +0900
+
+    feat: Controller에 포인트 조회 기능 연결
+
+[33mcommit 1b91a02b550fe125ce1d2856b2205ea44074ec4b[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 10:27:40 2025 +0900
+
+    feat: 포인트 조회 서비스 구현 (Green)
+
+[33mcommit 0b3c9639ad87ef5c8dc7b7e5c2d78bd07ceb7ba7[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 10:24:44 2025 +0900
+
+    test: 포인트 조회 테스트 케이스 확장
+
+[33mcommit 08d022f5aa59826c3e94667e6330e6b8c67cfba9[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 09:56:25 2025 +0900
+
+    test: postman 체크를 위한 임시테스트
+
+[33mcommit fe275215d9ef164456156b36cf970526c023b667[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 09:53:37 2025 +0900
+
+    feat: Controller에 포인트 조회 기능 연결 및 final 적용
+
+[33mcommit bebe88e6c7aad2eba8ee1b82a59957e6ace89298[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 09:53:25 2025 +0900
+
+    feat: 포인트 조회 서비스 구현
+
+[33mcommit 71e3460f3a75964ae32c1ad420b9fc827d7e4cea[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 09:53:09 2025 +0900
+
+    test: 포인트 조회 테스트 케이스 확장 (다양한 유저 시나리오)
+
+[33mcommit d0f60b5b7f60ad041a1e251152ba149f04654fcd[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 09:18:47 2025 +0900
+
+    feat: 포인트 조회 기능 구현 (Green)
+
+[33mcommit 73349bff5fab02e2c5d05ec6bdb4217433ce5122[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 09:12:09 2025 +0900
+
+    test: 포인트 조회 기능 테스트 작성 (Red)
+
+[33mcommit 957a45d710173757838675224413880650dda745[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sun Oct 19 08:32:37 2025 +0900
+
+    feat: Add PR template for TDD point project
+
+[33mcommit bf06831d7e487e2d5659e5ecfa1f507767c1127f[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sat Oct 18 17:55:19 2025 +0900
+
+    Inital commit: TDD point project
