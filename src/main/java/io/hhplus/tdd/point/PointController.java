@@ -49,12 +49,7 @@ public class PointController {
             @RequestBody long amount
     ) {
 //        return new UserPoint(0, 0, 0);
-        try {
-            return pointService.chargePoint(id, amount);
-        } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
-//        return pointService.chargePoint(id,amount);
+        return pointService.chargePoint(id,amount);
     }
 
     /**

@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.nio.charset.StandardCharsets;
 
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -20,6 +20,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(PointController.class)
+@Import(PointExceptionHandler.class)
+@ComponentScan(basePackages = "io.hhplus.tdd.point")
 public class PointChargeControllerTest {
 
     @Autowired
@@ -58,13 +60,15 @@ public class PointChargeControllerTest {
         long chargeAmount = -1000L;
 
         when(pointService.chargePoint(anyLong(), anyLong()))
-                .thenThrow(new IllegalArgumentException("충전 금액은 0보다 커야 합니다."));
+                .thenThrow(new IllegalArgumentException("충전 금액은 0보다 커야 합니다"));
 
         // when & then
         mockMvc.perform(patch("/point/{id}/charge", userId)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(String.valueOf(chargeAmount)))
+                .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andDo(print());;
+                .andExpect(jsonPath("$.message").value("충전 금액은 0보다 커야 합니다"));
+
     }
 }
