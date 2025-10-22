@@ -9,4 +9,9 @@ public class PointService {
         // 최소한의 구현: 항상 0포인트 반환
         return UserPoint.empty(userId);
     }
+
+    public UserPoint chargePoint(long userId, long amount) {
+        // 최소한의 구현: 항상 충전한 금액만큼 반환
+        return new UserPoint(userId, amount, System.currentTimeMillis());
+    }
 }
