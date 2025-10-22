@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.hhplus.tdd.point.PointChargeControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-10-22T23:07:08" hostname="HS_KIM" time="0.293">
+<testsuite name="io.hhplus.tdd.point.PointChargeControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-10-22T23:17:22" hostname="HS_KIM" time="0.344">
   <properties/>
-  <testcase name="포인트 충전 API 호출시 충전된 포인트를 반환한다" classname="io.hhplus.tdd.point.PointChargeControllerTest" time="0.293"/>
-  <system-out><![CDATA[08:07:06.190 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [io.hhplus.tdd.point.PointChargeControllerTest]: PointChargeControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-08:07:06.344 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration io.hhplus.tdd.TddApplication for test class io.hhplus.tdd.point.PointChargeControllerTest
+  <testcase name="음수 금액 충전 시도시 400에러를 반환한다" classname="io.hhplus.tdd.point.PointChargeControllerTest" time="0.279"/>
+  <testcase name="포인트 충전 API 호출시 충전된 포인트를 반환한다" classname="io.hhplus.tdd.point.PointChargeControllerTest" time="0.063"/>
+  <system-out><![CDATA[08:17:20.583 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [io.hhplus.tdd.point.PointChargeControllerTest]: PointChargeControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+08:17:20.745 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration io.hhplus.tdd.TddApplication for test class io.hhplus.tdd.point.PointChargeControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,12 +14,49 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.0)
 
-2025-10-23T08:07:06.763+09:00  INFO 17860 --- [hhplus-tdd] [    Test worker] i.h.tdd.point.PointChargeControllerTest  : Starting PointChargeControllerTest using Java 17.0.12 with PID 17860 (started by gimha in C:\Users\gimha\Documents\tdd-point)
-2025-10-23T08:07:06.764+09:00  INFO 17860 --- [hhplus-tdd] [    Test worker] i.h.tdd.point.PointChargeControllerTest  : No active profile set, falling back to 1 default profile: "default"
-2025-10-23T08:07:08.381+09:00  INFO 17860 --- [hhplus-tdd] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2025-10-23T08:07:08.381+09:00  INFO 17860 --- [hhplus-tdd] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2025-10-23T08:07:08.385+09:00  INFO 17860 --- [hhplus-tdd] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2025-10-23T08:07:08.416+09:00  INFO 17860 --- [hhplus-tdd] [    Test worker] i.h.tdd.point.PointChargeControllerTest  : Started PointChargeControllerTest in 2.0 seconds (process running for 3.106)
+2025-10-23T08:17:21.190+09:00  INFO 24512 --- [hhplus-tdd] [    Test worker] i.h.tdd.point.PointChargeControllerTest  : Starting PointChargeControllerTest using Java 17.0.12 with PID 24512 (started by gimha in C:\Users\gimha\Documents\tdd-point)
+2025-10-23T08:17:21.190+09:00  INFO 24512 --- [hhplus-tdd] [    Test worker] i.h.tdd.point.PointChargeControllerTest  : No active profile set, falling back to 1 default profile: "default"
+2025-10-23T08:17:22.918+09:00  INFO 24512 --- [hhplus-tdd] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-10-23T08:17:22.919+09:00  INFO 24512 --- [hhplus-tdd] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-10-23T08:17:22.922+09:00  INFO 24512 --- [hhplus-tdd] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-10-23T08:17:22.960+09:00  INFO 24512 --- [hhplus-tdd] [    Test worker] i.h.tdd.point.PointChargeControllerTest  : Started PointChargeControllerTest in 2.134 seconds (process running for 3.265)
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /point/1/charge
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"5"]
+             Body = -1000
+    Session Attrs = {}
+
+Handler:
+             Type = io.hhplus.tdd.point.PointController
+           Method = io.hhplus.tdd.point.PointController#charge(long, long)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.server.ResponseStatusException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = [Content-Type:"application/problem+json"]
+     Content type = application/problem+json
+             Body = {"type":"about:blank","title":"Bad Request","status":400,"detail":"ì¶©ì ]]>&#x84;<![CDATA[ ê¸]]>&#x88;<![CDATA[ì]]>&#x95;<![CDATA[¡ì]]>&#x9d;<![CDATA[]]>&#x80;<![CDATA[ 0ë³´ë]]>&#x8b;<![CDATA[¤ ì»¤ì]]>&#x95;<![CDATA[¼ í]]>&#x95;<![CDATA[©ë]]>&#x8b;<![CDATA[]]>&#x88;<![CDATA[ë]]>&#x8b;<![CDATA[¤.","instance":"/point/1/charge"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
