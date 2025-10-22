@@ -6,10 +6,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PointService {
+    private final UserPointTable userPointTable;
+
+    public PointService(UserPointTable userPointTable) {
+        this.userPointTable = userPointTable;
+    }
 
     public UserPoint getUserPoint(long userId) {
-        // 최소한의 구현: 항상 0포인트 반환
-        return UserPoint.empty(userId);
+
+//        return UserPoint.empty(userId);
+//        실제 조회 구현
+        return userPointTable.selectById(userId);
     }
 
     public UserPoint chargePoint(long userId, long amount) {
@@ -21,6 +28,14 @@ public class PointService {
             throw new IllegalArgumentException("최대 충전 한도를 초과했습니다");
         }
 
-        return new UserPoint(userId, amount, System.currentTimeMillis());
+        // 현재 포인트 조회
+        UserPoint userPoint = userPointTable.selectById(userId);
+
+        // 현재 포인트 추가 및 업데이트
+        long newAmount = userPoint.point() + amount;
+
+        return  userPointTable.insertOrUpdate(userId,newAmount);
+
+//        return new UserPoint(userId, amount, System.currentTimeMillis());
     }
 }

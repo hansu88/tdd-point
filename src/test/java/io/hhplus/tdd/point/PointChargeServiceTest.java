@@ -1,5 +1,6 @@
 package io.hhplus.tdd.point;
 
+import io.hhplus.tdd.database.UserPointTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,10 +11,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PointChargeServiceTest {
 
     private PointService pointService;
+    private UserPointTable userPointTable;
 
     @BeforeEach
     void setUp() {
-        pointService = new PointService();
+        UserPointTable userPointTable = new UserPointTable();  // 새로운 지역 변수! (shadowing)
+        pointService = new PointService(userPointTable);
     }
 
     @Test

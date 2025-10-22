@@ -1,5 +1,6 @@
 package io.hhplus.tdd.point;
 
+import io.hhplus.tdd.database.UserPointTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,10 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PointQueryServiceTest {
 
     private PointService pointService;
+    private UserPointTable userPointTable;
 
     @BeforeEach
     void setUp() {
-        pointService = new PointService();
+        userPointTable = new UserPointTable();
+        pointService = new PointService(userPointTable);
     }
 
     @Test
@@ -52,7 +55,7 @@ class PointQueryServiceTest {
     void getUserPoint_select() {
         // given
         long userId = 1L;
-        long expectedPoint = 1000L;
+        long expectedPoint = 1L;
 
         pointService.chargePoint(userId,expectedPoint);
 
@@ -60,7 +63,7 @@ class PointQueryServiceTest {
         UserPoint userpoint = pointService.getUserPoint(userId);
 
         // then
-        assertThat(userpoint.id()).isEqualTo(expectedPoint);
+        assertThat(userpoint.id()).isEqualTo(userId);
         assertThat(userpoint.point()).isEqualTo(expectedPoint);
     }
 }
