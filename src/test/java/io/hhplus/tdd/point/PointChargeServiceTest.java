@@ -24,10 +24,36 @@ class PointChargeServiceTest {
         long chargeAmount = 1000L;
 
         // when
-        UserPoint result = pointService.chargePoint(userId, chargeAmount);  // 🔴 메서드 없음
+        UserPoint result = pointService.chargePoint(userId, chargeAmount);
 
         // then
         assertThat(result.id()).isEqualTo(userId);
         assertThat(result.point()).isEqualTo(1000L);
+    }
+
+    @Test
+    @DisplayName("0 이하의 금액 충전 시 예외가 발생한다")
+    void chargePoint_NegativeAmount_ThrowsException() {
+        // given
+        long userId = 3L;
+        long invalidAmount = -100L;
+
+        // when & then
+        assertThatThrownBy(() -> pointService.chargePoint(userId, invalidAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("충전 금액은 0보다 커야 합니다");
+    }
+
+    @Test
+    @DisplayName("최대 충전 한도를 초과하면 예외가 발생한다")
+    void chargePoint_ExceedsMaxLimit_ThrowsException() {
+        // given
+        long userId = 4L;
+        long maxAmount = 1_000_000L;
+
+        // when & then
+        assertThatThrownBy(() -> pointService.chargePoint(userId, maxAmount + 1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("최대 충전 한도를 초과했습니다");
     }
 }
