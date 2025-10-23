@@ -1,0 +1,161 @@
+[33mcommit ad772451f30877582242b145be59e64da5549ca2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32ms1[m[33m)[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 12:53:13 2025 +0900
+
+    (RED) 사용자 포인트 내역 조회 테스트 작성
+
+[33mcommit 3e0316b86f3eb35bca90a133e5d61b579df7c999[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 12:18:49 2025 +0900
+
+    (그린) 포인트 사용 Controller 구현 및 테스트 수정
+
+[33mcommit 8e8159fe04bca8d0944201d7b620e05de03e1013[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 12:14:55 2025 +0900
+
+    (레드) 포인트 사용 Controller 테스트 작성
+
+[33mcommit eb4ae3bdc3c5802b875190b44128524500d1eabf[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 12:03:48 2025 +0900
+
+    (그린)사용 금액 양수 검증 추가
+
+[33mcommit efdd96034143f5a968d645ce67a2997885e69e2e[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 12:00:58 2025 +0900
+
+    (레드) 1000원 미만 금액 예외 처리 테스트 추가
+
+[33mcommit aa44cb8d959601e0850dfbf61a252857d603d6b6[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 11:54:09 2025 +0900
+
+    (그린) 포인트 부족 시 예외 발생 및 미호출 검증 테스트 수정
+
+[33mcommit dc834f626029782be75bac299ef11b7f14def26e[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 11:50:25 2025 +0900
+
+    (레드) 포인트 부족 시 예외 발생 테스트 추가 수정
+
+[33mcommit 612c4f6596d075f019eb4f2c449ef8c93e21e61c[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 11:47:05 2025 +0900
+
+    (레드) 포인트 부족 시 예외 발생 테스트 추가
+
+[33mcommit 7a2e727c2feaa72c643ac66e15744ed5fd2bae2c[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 09:10:04 2025 +0900
+
+    (그린) 포인트 사용 시 차감 메서드 구현
+
+[33mcommit e68a6d1f6fa7e0338c203b58c443eb9248322237[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 09:04:39 2025 +0900
+
+     (레드) 포인트 사용 시 차감 메서드 미구현
+
+[33mcommit 8277e626838ef73e7bb5bc09881aa9a839e66b7f[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 08:32:50 2025 +0900
+
+    (리팩토링)  예외 처리를 PointExceptionHandler로 분리 및 통합
+
+[33mcommit 06a51871433a8be12024a4466e4aa7547893ea8f[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 08:18:15 2025 +0900
+
+    (그린) 포인트 충전 예외 시 400 반환
+
+[33mcommit f6d83e819ba7358b635780dc587c8fc5802cca5d[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 08:07:25 2025 +0900
+
+    (그린) 포인트 충전 Controller 구현 완료
+
+[33mcommit 8e05a7840662e2e6d2e133020b0936f5c342512b[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 08:05:07 2025 +0900
+
+    (레드) 포인트 충전 Controller 테스트 - API 테스트 작성
+
+[33mcommit 3dc3fb50688d331edf58527fc5ce9e7017d848ad[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 07:52:13 2025 +0900
+
+    (리팩토링) 포인트 충전 Service - 현재 포인트 추가 및 업데이트
+
+[33mcommit 14e2a43f339c8b13176d1fcae1a29d7582140514[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 07:39:41 2025 +0900
+
+    (red): 포인트 조회 시 미충전 상태 0 값 반환 테스트
+
+[33mcommit 6069a0d0227a1c3ccc550ce4c6901c834249d904[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Thu Oct 23 07:32:01 2025 +0900
+
+    (그린) 포인트 충전 Service 테스트 - 예외 처리 로직 구현
+
+[33mcommit bfae8ab7bb65b1cb7fcdf2235121e5852cc9887a[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:54:57 2025 +0900
+
+    (레드) 포인트 충전 Service 테스트 - 예외 케이스 테스트 추가
+
+[33mcommit 0278689f826247f0342e7bc3eded494d3ef4f415[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:51:26 2025 +0900
+
+    (그린) 포인트 충전 Service 테스트 - chargePoint 메서드 최소 구현
+
+[33mcommit 46240de5fce76a58446d93c43deba1967045e4f7[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:49:56 2025 +0900
+
+    (레드) 포인트 충전 Service 테스트 - chargePoint 메서드 없음
+
+[33mcommit 5efa5f75b4f309d882fb93da59e5ecf0e6fde30d[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:35:35 2025 +0900
+
+    (리팩토링) 포인트 조회 Controller 테스트 - 추가 테스트 케이스
+
+[33mcommit 2b3d625a0e46772879cac3439c2d2f723a4e8207[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:21:39 2025 +0900
+
+    (그린) 포인트 조회 Controller 테스트 - PointService 의존성 주입 완료
+
+[33mcommit 8329e43b70b6cff4a71f5d8a4b787af65fad453a[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:19:47 2025 +0900
+
+    (레드) 포인트 조회 Controller 테스트 - PointService 의존
+
+[33mcommit 6c3652c5eb673b7a16a3bf2ba4e3392e02b27db5[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:05:29 2025 +0900
+
+    (리팩토링) 포인트 조회 Service 테스트 - 추가 테스트 케이스 작성
+
+[33mcommit 37fd6295ec9b0e5ab63cb5569da627d5fcab72f9[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:04:02 2025 +0900
+
+    (그린) 포인트 조회 Service 테스트 - PointService 최소 구현
+
+[33mcommit 7214eecaaf0e036f48ee054c3ea866523cad771e[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Wed Oct 22 22:01:58 2025 +0900
+
+    (레드) 포인트 조회 Service 테스트 - PointService 클래스 없음
+
+[33mcommit bf06831d7e487e2d5659e5ecfa1f507767c1127f[m[33m ([m[1;32mmain[m[33m)[m
+Author: hansu88 <gimhans0917@gmail.com>
+Date:   Sat Oct 18 17:55:19 2025 +0900
+
+    Inital commit: TDD point project

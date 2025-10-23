@@ -2,15 +2,28 @@ package io.hhplus.tdd.point;
 
 import io.hhplus.tdd.database.PointHistoryTable;
 import io.hhplus.tdd.database.UserPointTable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PointService {
     private final UserPointTable userPointTable;
+    private final PointHistoryTable pointHistoryTable;
 
     public PointService(UserPointTable userPointTable) {
         this.userPointTable = userPointTable;
+        this.pointHistoryTable = new PointHistoryTable();  // 여기서 직접 생성
     }
+
+    // 새 생성자 (Spring과 새 테스트를 위해)
+    @Autowired
+    public PointService(UserPointTable userPointTable, PointHistoryTable pointHistoryTable) {
+        this.userPointTable = userPointTable;
+        this.pointHistoryTable = pointHistoryTable;
+    }
+
 
     public UserPoint getUserPoint(long userId) {
 
@@ -59,5 +72,9 @@ public class PointService {
         UserPoint updatedUserPoint = userPointTable.insertOrUpdate(userId, newPoint);
 
         return updatedUserPoint;
+    }
+
+    public List<PointHistory> getUserPointHistory(long userId) {
+        return pointHistoryTable.selectAllByUserId(userId);
     }
 }
