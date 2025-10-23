@@ -38,4 +38,17 @@ public class PointService {
 
 //        return new UserPoint(userId, amount, System.currentTimeMillis());
     }
+
+    public UserPoint usePoint(long userId, long amount) {
+        // 현재 포인트 조회
+        UserPoint currentUserPoint = userPointTable.selectById(userId);
+
+        // 포인트 차감
+        long newPoint = currentUserPoint.point() - amount;
+
+        // 포인트 저장
+        UserPoint updatedUserPoint = userPointTable.insertOrUpdate(userId, newPoint);
+
+        return updatedUserPoint;
+    }
 }
