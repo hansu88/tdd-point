@@ -46,8 +46,12 @@ public class PointService {
 
         // 현재 포인트 추가 및 업데이트
         long newAmount = userPoint.point() + amount;
+        UserPoint updatedPoint = userPointTable.insertOrUpdate(userId, newAmount);
+        pointHistoryTable.insert(userId, amount, TransactionType.CHARGE,updatedPoint.updateMillis());
 
-        return  userPointTable.insertOrUpdate(userId,newAmount);
+        return updatedPoint;
+
+//        return  userPointTable.insertOrUpdate(userId,newAmount);
 
 //        return new UserPoint(userId, amount, System.currentTimeMillis());
     }
