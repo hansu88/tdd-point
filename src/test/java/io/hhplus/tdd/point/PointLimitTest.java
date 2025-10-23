@@ -51,4 +51,24 @@ public class PointLimitTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("하루 포인트 사용 횟수(5회)를 초과했습니다");
         }
+
+    @Test
+    @DisplayName("당일 충전 금액이 3,000,000원을 초과하면 실패한다")
+    void chargePointLimitTest() throws Exception{
+        // given
+        UserPointTable userPointTable = new UserPointTable();
+        PointHistoryTable pointHistoryTable = new PointHistoryTable();
+        PointService pointService = new PointService(userPointTable, pointHistoryTable);
+        long userId = 1L;
+
+        pointService.chargePoint(userId, 1_000_000L);
+        pointService.chargePoint(userId, 1_000_000L);
+        pointService.chargePoint(userId, 500_000L);
+
+        // when & then
+        assertThatThrownBy(() -> pointService.chargePoint(userId, 600_000L))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("일일 충전 한도(3,000,000원)를 초과했습니다");
+    }
+
 }
