@@ -42,6 +42,6 @@ public class PointUseControllerTest {
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(String.valueOf(useAmount)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.point").value(expectedPoint));
+                .andExpect(jsonPath("$.point").value(expectedPoint.point()));
     }
 }
