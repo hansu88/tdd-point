@@ -11,8 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 // 목 확장 class 활용하여 사용해보기
 @ExtendWith(MockitoExtension.class)
@@ -67,7 +66,8 @@ public class PointUseServiceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("포인트가 부족합니다");
 
-        verify(userPointTable).insertOrUpdate(userId, useAmount);
+        verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
+        verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
 
     }
 }
