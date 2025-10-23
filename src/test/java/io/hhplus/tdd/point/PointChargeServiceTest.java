@@ -73,4 +73,18 @@ class PointChargeServiceTest {
                 .hasMessageContaining("충전 금액은 0보다 커야 합니다");
 
     }
+
+    @Test
+    @DisplayName("최대 충전 한도 1,000,000원은 성공한다")
+    void pointChargeMax_SuccessReturn() throws  Exception {
+        // given
+        long userId = 1L;
+        long maxAmount = 1_000_000L;
+
+        // when
+        UserPoint userpoint =  pointService.chargePoint(userId, maxAmount);
+
+        // then
+        assertThat(userpoint.point()).isEqualTo(maxAmount);
+    }
 }

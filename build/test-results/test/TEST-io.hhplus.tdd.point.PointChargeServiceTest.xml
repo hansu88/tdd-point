@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.hhplus.tdd.point.PointChargeServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-10-23T16:12:12" hostname="HS_KIM" time="0.914">
+  <properties/>
+  <testcase name="사용자에게 1000포인트를 충전하면 포인트가 1000 증가한다" classname="io.hhplus.tdd.point.PointChargeServiceTest" time="0.712"/>
+  <testcase name="0 이하의 금액 충전 시 예외가 발생한다" classname="io.hhplus.tdd.point.PointChargeServiceTest" time="0.006"/>
+  <testcase name="0원 충전 시도 시 예외가 발생한다" classname="io.hhplus.tdd.point.PointChargeServiceTest" time="0.001"/>
+  <testcase name="최대 충전 한도를 초과하면 예외가 발생한다" classname="io.hhplus.tdd.point.PointChargeServiceTest" time="0.002"/>
+  <testcase name="최대 충전 한도 1,000,000원은 성공한다" classname="io.hhplus.tdd.point.PointChargeServiceTest" time="0.187"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
