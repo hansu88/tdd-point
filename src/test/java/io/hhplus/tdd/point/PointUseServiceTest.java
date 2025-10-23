@@ -51,4 +51,24 @@ public class PointUseServiceTest {
         // then - insertOrUpdate 메서드확인
         verify(userPointTable).insertOrUpdate(userId, expectedPoint);
     }
+
+    @Test
+    @DisplayName("보유 포인트보다 많은 금액 사용시 예외작업입니다")
+    void usePointExceed_ThrowsException(){
+        // given
+        long userId = 1L;
+        long initialPoint = 10000L;
+        long useAmount = 13000L;
+
+        when(userPointTable.selectById(userId))
+            .thenReturn(new UserPoint(userId, initialPoint, System.currentTimeMillis()));
+
+        // when & then
+        assertThat(pointService.usePoint(userId, useAmount))
+                .isNotInstanceOf(IllegalArgumentException.class)
+                .hasToString("포인트가 부족합니다");
+
+        verify(userPointTable).insertOrUpdate(userId, useAmount);
+
+    }
 }
