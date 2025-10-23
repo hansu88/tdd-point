@@ -5,6 +5,8 @@ import io.hhplus.tdd.database.UserPointTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 @Service
@@ -60,6 +62,24 @@ public class PointService {
 
         if (amount < 1000) {
             throw new  IllegalArgumentException("사용금액은 1000원 이상이여야 합니다");
+        }
+
+        // 1. 전체 히스토리 조회
+        List<PointHistory> allHistory = pointHistoryTable.selectAllByUserId(userId);
+
+        // 2. 오늘 00시 시작 시점
+        long todayStart = LocalDate.now().atStartOfDay(ZoneId.systemDefault())
+                .toInstant().toEpochMilli();
+
+        // 3. 필터링: todayStart <= updateMillis < 현재시간
+        long todayUseCount = allHistory.stream()
+                .filter(history -> history.type() == TransactionType.USE)      // USE만
+                .filter(history -> history.updateMillis() >= todayStart)       // 당일만
+                .count();
+
+        // 4. 5회 이상이면 예외 발생
+        if (todayUseCount >= 5) {
+            throw new IllegalArgumentException("하루 포인트 사용 횟수(5회)를 초과했습니다");
         }
 
         // 현재 포인트 조회
