@@ -38,12 +38,6 @@ public class PointLimitTest {
 
         long userId = 1L;
 
-        // 오늘 00시
-        long todayStart = LocalDate.now()
-                .atStartOfDay(ZoneId.systemDefault())
-                .toInstant()
-                .toEpochMilli();
-
         // 먼저 5번 사용
         pointService.chargePoint(userId, 100000L); // 충전
         pointService.usePoint(userId, 1000L);  // 1번

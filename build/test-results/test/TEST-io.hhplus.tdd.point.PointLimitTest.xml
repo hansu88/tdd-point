@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.hhplus.tdd.point.PointLimitTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-10-23T17:07:40" hostname="HS_KIM" time="2.565">
+<testsuite name="io.hhplus.tdd.point.PointLimitTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-10-23T17:13:00" hostname="HS_KIM" time="2.789">
   <properties/>
-  <testcase name="당일 포인트 사용이 5번만 사용가능합니다." classname="io.hhplus.tdd.point.PointLimitTest" time="2.565"/>
+  <testcase name="당일 포인트 사용이 5번만 사용가능합니다." classname="io.hhplus.tdd.point.PointLimitTest" time="2.789"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
