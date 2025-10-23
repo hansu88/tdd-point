@@ -68,6 +68,21 @@ public class PointUseServiceTest {
 
         verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
         verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
+    }
 
+    @Test
+    @DisplayName("1000원 미만의 금액 사용시 예외 발생 작업입니다")
+    void usePoint1000_ThrowsException() {
+        // given
+        long userId = 1L;
+        long useAmount = 900L;
+
+        // when & then
+        assertThatThrownBy(() -> pointService.usePoint(userId, useAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("사용금액은 1000원 이상이여야 합니다");
+
+        verify(userPointTable, never()).selectById(anyLong());
+        verify(userPointTable, never()).insertOrUpdate(anyLong(), anyLong());
     }
 }
