@@ -77,4 +77,31 @@ public class PointHistoryServiceTest {
 
     }
 
+    @Test
+    @DisplayName("포인트 충전시 히스토리에 저장된다")
+    void chargePoint_SuccessReturn() throws Exception {
+        // given
+        long userId = 1L;
+        long amount = 10_000L;
+        long currentTime = System.currentTimeMillis();
+
+        UserPoint existPoint = new UserPoint(userId,5_000L , currentTime);
+        UserPoint updatePoint = new UserPoint(userId,15_000L,currentTime+100);
+
+        when(userPointTable.selectById(userId)).thenReturn(existPoint);
+        when(userPointTable.insertOrUpdate(userId,15_000L)).thenReturn(updatePoint);
+
+        // when
+        pointService.chargePoint(userId,amount);
+
+        // then
+        verify(pointHistoryTable, times(1)).insert(
+                eq(userId),
+                eq(amount),
+                eq(TransactionType.CHARGE),
+                anyLong()
+        );
+
+    }
+
 }
