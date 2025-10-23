@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.hhplus.tdd.point.PointLimitTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2025-10-23T17:21:38" hostname="HS_KIM" time="4.756">
+<testsuite name="io.hhplus.tdd.point.PointLimitTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2025-10-23T17:25:22" hostname="HS_KIM" time="3.889">
   <properties/>
-  <testcase name="당일 포인트 사용이 5번만 사용가능합니다." classname="io.hhplus.tdd.point.PointLimitTest" time="2.962"/>
-  <testcase name="당일 충전 금액이 3,000,000원을 초과하면 실패한다" classname="io.hhplus.tdd.point.PointLimitTest" time="1.794">
+  <testcase name="당일 포인트 사용이 5번만 사용가능합니다." classname="io.hhplus.tdd.point.PointLimitTest" time="2.561"/>
+  <testcase name="당일 충전 금액이 300,000원을 초과하면 실패한다" classname="io.hhplus.tdd.point.PointLimitTest" time="1.328">
     <failure message="java.lang.AssertionError: &#13;&#10;Expecting code to raise a throwable." type="java.lang.AssertionError">java.lang.AssertionError: 
 Expecting code to raise a throwable.
 	at io.hhplus.tdd.point.PointLimitTest.chargePointLimitTest(PointLimitTest.java:69)
