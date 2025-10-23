@@ -43,6 +43,10 @@ public class PointService {
         // 현재 포인트 조회
         UserPoint currentUserPoint = userPointTable.selectById(userId);
 
+        if (currentUserPoint.point() < amount) {
+            throw new IllegalArgumentException("포인트가 부족합니다");
+        }
+
         // 포인트 차감
         long newPoint = currentUserPoint.point() - amount;
 

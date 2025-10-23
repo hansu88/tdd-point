@@ -10,8 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -53,7 +52,7 @@ public class PointUseServiceTest {
     }
 
     @Test
-    @DisplayName("보유 포인트보다 많은 금액 사용시 예외작업입니다")
+    @DisplayName("보유 포인트보다 많은 금액 사용시 예외 작업입니다")
     void usePointExceed_ThrowsException(){
         // given
         long userId = 1L;
@@ -64,9 +63,9 @@ public class PointUseServiceTest {
             .thenReturn(new UserPoint(userId, initialPoint, System.currentTimeMillis()));
 
         // when & then
-        assertThat(pointService.usePoint(userId, useAmount))
-                .isNotInstanceOf(IllegalArgumentException.class)
-                .hasToString("포인트가 부족합니다");
+        assertThatThrownBy(() -> pointService.usePoint(userId, useAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("포인트가 부족합니다");
 
         verify(userPointTable).insertOrUpdate(userId, useAmount);
 

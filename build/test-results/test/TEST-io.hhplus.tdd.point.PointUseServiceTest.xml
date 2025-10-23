@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.hhplus.tdd.point.PointUseServiceTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2025-10-23T02:45:44" hostname="HS_KIM" time="1.04">
+<testsuite name="io.hhplus.tdd.point.PointUseServiceTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2025-10-23T02:48:56" hostname="HS_KIM" time="1.03">
   <properties/>
-  <testcase name="보유 포인트로 사용시 포인트 차감된다" classname="io.hhplus.tdd.point.PointUseServiceTest" time="1.02"/>
-  <testcase name="보유 포인트보다 많은 금액 사용시 예외작업입니다" classname="io.hhplus.tdd.point.PointUseServiceTest" time="0.015">
-    <failure message="java.lang.AssertionError: &#13;&#10;Expecting actual not to be null" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expecting actual not to be null
-	at io.hhplus.tdd.point.PointUseServiceTest.usePointExceed_ThrowsException(PointUseServiceTest.java:68)
+  <testcase name="보유 포인트로 사용시 포인트 차감된다" classname="io.hhplus.tdd.point.PointUseServiceTest" time="1.014"/>
+  <testcase name="보유 포인트보다 많은 금액 사용시 예외 작업입니다" classname="io.hhplus.tdd.point.PointUseServiceTest" time="0.011">
+    <failure message="java.lang.IllegalArgumentException: 포인트가 부족합니다" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: 포인트가 부족합니다
+	at io.hhplus.tdd.point.PointService.usePoint(PointService.java:47)
+	at io.hhplus.tdd.point.PointUseServiceTest.usePointExceed_ThrowsException(PointUseServiceTest.java:67)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
