@@ -15,6 +15,7 @@ public class PointService {
     private final PointHistoryTable pointHistoryTable;
 
     private static final int MAX_DAILY_USE_COUNT = 5;
+    private static final long MAX_DAILY_CHARGE_AMOUNT = 300_000L;
 
     public PointService(UserPointTable userPointTable) {
         this.userPointTable = userPointTable;
@@ -43,6 +44,24 @@ public class PointService {
         }
         if (amount > 1000000L) {
             throw new IllegalArgumentException("최대 충전 한도를 초과했습니다");
+        }
+
+        List<PointHistory> historyList = pointHistoryTable.selectAllByUserId(userId);
+
+        long todayStart = LocalDate.now()
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli();
+
+        long todayChargeSum = historyList.stream()
+                .filter(history -> history.type() == TransactionType.CHARGE)
+                .filter(history -> history.updateMillis() >= todayStart)
+                .mapToLong(PointHistory::amount)
+                .sum();
+
+        // 이번 충전까지 포함한 총 금액
+        if (todayChargeSum + amount > MAX_DAILY_CHARGE_AMOUNT) {
+            throw new IllegalArgumentException("일일 충전 한도(300,000원)를 초과했습니다");
         }
 
         // 현재 포인트 조회
