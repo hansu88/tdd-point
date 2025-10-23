@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -60,5 +61,20 @@ public class PointHistoryServiceTest {
         verify(pointHistoryTable, times(1)).selectAllByUserId(userId);
     }
 
+    @Test
+    @DisplayName("내역이 없는 사용자 조회 시 빈리스트를 반환하다")
+    void getListNoUser() throws Exception {
+        // given
+        long userId = 999L;
+        when(pointHistoryTable.selectAllByUserId(eq(userId))).thenReturn(Collections.emptyList());
+
+        // when
+        List<PointHistory> historyList = pointService.getUserPointHistory(userId);
+
+        //then
+        assertThat(historyList).isNotNull();
+        assertThat(historyList.size()).isEqualTo(0);
+
+    }
 
 }
