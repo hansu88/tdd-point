@@ -59,4 +59,18 @@ class PointChargeServiceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("최대 충전 한도를 초과했습니다");
     }
+
+    @Test
+    @DisplayName("0원 충전 시도 시 예외가 발생한다")
+    void chargePoint_ZeroReturn() throws  Exception {
+        // given
+        long userId = 1L;
+        long zeroAmount = 0L;
+
+        // when & then
+        assertThatThrownBy(() -> pointService.chargePoint(userId, zeroAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("충전 금액은 0보다 커야 합니다");
+
+    }
 }
