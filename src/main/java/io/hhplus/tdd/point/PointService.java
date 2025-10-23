@@ -40,6 +40,11 @@ public class PointService {
     }
 
     public UserPoint usePoint(long userId, long amount) {
+
+        if (amount < 1000) {
+            throw new  IllegalArgumentException("사용금액은 1000원 이상이여야 합니다");
+        }
+
         // 현재 포인트 조회
         UserPoint currentUserPoint = userPointTable.selectById(userId);
 
