@@ -14,6 +14,8 @@ public class PointService {
     private final UserPointTable userPointTable;
     private final PointHistoryTable pointHistoryTable;
 
+    private static final int MAX_DAILY_USE_COUNT = 5;
+
     public PointService(UserPointTable userPointTable) {
         this.userPointTable = userPointTable;
         this.pointHistoryTable = new PointHistoryTable();  // 여기서 직접 생성
@@ -78,8 +80,8 @@ public class PointService {
                 .count();
 
         // 4. 5회 이상이면 예외 발생
-        if (todayUseCount >= 5) {
-            throw new IllegalArgumentException("하루 포인트 사용 횟수(5회)를 초과했습니다");
+        if (todayUseCount >= MAX_DAILY_USE_COUNT) {
+            throw new IllegalArgumentException("하루 포인트 사용 횟수(" + MAX_DAILY_USE_COUNT + "회)를 초과했습니다");
         }
 
         // 현재 포인트 조회
