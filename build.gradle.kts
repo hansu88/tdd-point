@@ -31,7 +31,10 @@ dependencies {
 
 // about source and compilation
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+//    sourceCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 with(extensions.getByType(JacocoPluginExtension::class.java)) {
