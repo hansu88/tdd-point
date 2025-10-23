@@ -74,6 +74,7 @@ public class PointService {
 
         // 포인트 저장
         UserPoint updatedUserPoint = userPointTable.insertOrUpdate(userId, newPoint);
+        pointHistoryTable.insert(userId, amount, TransactionType.USE,updatedUserPoint.updateMillis());
 
         return updatedUserPoint;
     }
