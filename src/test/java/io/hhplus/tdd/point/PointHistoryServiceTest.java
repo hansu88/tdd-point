@@ -104,4 +104,31 @@ public class PointHistoryServiceTest {
 
     }
 
+    @Test
+    @DisplayName("포인트 사용시 히스토리가 저장된다")
+    void usePoint_SuccessReturn() throws Exception {
+        // given
+        long userId = 1L;
+        long amount = 3_000L;
+        long currentTime = System.currentTimeMillis();
+
+        UserPoint existPoint = new UserPoint(userId,5_000L , currentTime);
+        UserPoint updatePoint = new UserPoint(userId,2_000L,currentTime+100);
+
+        when(userPointTable.selectById(userId)).thenReturn(existPoint);
+        when(userPointTable.insertOrUpdate(userId,2_000L)).thenReturn(updatePoint);
+
+        // when
+        pointService.usePoint(userId,amount);
+
+        // then
+        verify(pointHistoryTable, times(1)).insert(
+                eq(userId),
+                eq(amount),
+                eq(TransactionType.USE),
+                anyLong()
+        );
+
+    }
+
 }
