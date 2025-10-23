@@ -34,7 +34,7 @@ public class PointService {
 
     public UserPoint chargePoint(long userId, long amount) {
         // 유효성 검증
-        if (amount < 0) {
+        if (amount <= 0) {
             throw new IllegalArgumentException("충전 금액은 0보다 커야 합니다");
         }
         if (amount > 1000000L) {
